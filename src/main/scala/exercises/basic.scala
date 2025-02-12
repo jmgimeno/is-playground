@@ -3,13 +3,14 @@ package exercises
 import scala.annotation.tailrec
 
 // 1. Sum of Two Integers
-def sum(a: Int, b: Int): Int = ???
+def sum(a: Int, b: Int): Int = a + b
 
 // 2. Check Even or Odd
-def isEven(n: Int): Boolean = ???
+def isEven(n: Int): Boolean = n % 2 == 0
 
 // 3. Find Maximum of Two Numbers
-def max(a: Double, b: Double): Double = ???
+def max(a: Double, b: Double): Double = if a > b then a else b
+def max2(a: Double, b: Double): Double = if (a > b) a else b
 
 // 4. Absolute Value
 def abs(n: Int): Int = ???
@@ -21,11 +22,35 @@ def sign(n: Int): Int = ???
 def grade(score: Int): String = ???
 
 // 7. Print Numbers from 1 to N
-def printNumbers(n: Int): Unit = ???
+def printNumbers(n: Int): Unit = for (i <- 1 to n) println(i)
+def printNumbers2(n: Int): Unit = for {i <- 1 to n} println(i)
+def printNumbers3(n: Int): Unit = for i <- 1 to n do println(i)
+def printNumbers4(n: Int): Unit = (1 to n).foreach(println)
 
 // 8. Sum of First N Numbers
-def sumN(n: Int): Int = ???
+def sumN(n: Int): Int =
+  if n > 0 then
+    n + sumN(n - 1)
+  else
+    0
 
+def sumN2(n: Int): Int =
+  @tailrec
+  def go(i: Int, acc: Int): Int =
+    if i > 0 then
+      go(i - 1, acc + i)
+    else
+      acc
+  go(n, 0)
+  
+def sumN3(n: Int): Int =
+  var i = n
+  var acc = 0
+  while i > 0 do
+    acc = acc + i
+    i = i - 1
+  acc
+  
 // 9. Factorial Calculation
 def factorial(n: Int): Int = ???
 
