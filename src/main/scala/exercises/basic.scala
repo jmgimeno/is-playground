@@ -1,5 +1,7 @@
 package exercises
 
+import scala.annotation.tailrec
+
 // 1. Sum of Two Integers
 def sum(a: Int, b: Int): Int = ???
 
