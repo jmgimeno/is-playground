@@ -9,8 +9,11 @@ def sum(a: Int, b: Int): Int = a + b
 def isEven(n: Int): Boolean = n % 2 == 0
 
 // 3. Find Maximum of Two Numbers
-def max(a: Double, b: Double): Double = if a > b then a else b
-def max2(a: Double, b: Double): Double = if (a > b) a else b
+def max(a: Double, b: Double): Double =
+  if a > b then a else b
+
+def max2(a: Double, b: Double): Double =
+  if (a > b) a else b
 
 // 4. Absolute Value
 def abs(n: Int): Int = ???
@@ -22,10 +25,17 @@ def sign(n: Int): Int = ???
 def grade(score: Int): String = ???
 
 // 7. Print Numbers from 1 to N
-def printNumbers(n: Int): Unit = for (i <- 1 to n) println(i)
-def printNumbers2(n: Int): Unit = for {i <- 1 to n} println(i)
-def printNumbers3(n: Int): Unit = for i <- 1 to n do println(i)
-def printNumbers4(n: Int): Unit = (1 to n).foreach(println)
+def printNumbers(n: Int): Unit =
+  for (i <- 1 to n) println(i)
+
+def printNumbers2(n: Int): Unit =
+  for {i <- 1 to n} println(i)
+
+def printNumbers3(n: Int): Unit =
+  for i <- 1 to n do println(i)
+
+def printNumbers4(n: Int): Unit =
+  (1 to n).foreach(println)
 
 // 8. Sum of First N Numbers
 def sumN(n: Int): Int =
@@ -41,8 +51,9 @@ def sumN2(n: Int): Int =
       go(i - 1, acc + i)
     else
       acc
+
   go(n, 0)
-  
+
 def sumN3(n: Int): Int =
   var i = n
   var acc = 0
@@ -50,15 +61,45 @@ def sumN3(n: Int): Int =
     acc = acc + i
     i = i - 1
   acc
-  
+
+def sumN4(n: Int): Int =
+  (1 to n).sum
+
 // 9. Factorial Calculation
-def factorial(n: Int): Int = ???
+def factorial(n: Int): Int =
+  (1 to n).product
 
 // 10. Fibonacci Sequence
-def fibonacci(n: Int): List[Int] = ???
+def fibonacci(n: Int): List[Int] =
+  def fibo(n: Int): Int =
+    require(n >= 0)
+    if n <= 1
+    then n
+    else fibo(n - 1) + fibo(n - 2)
+  (1 to n).map(fibo).toList
+
+def fibonacci2(n: Int): List[Int] =
+  def fibo(n: Int): List[Int] =
+    require(n >= 0)
+    if n == 0 then List()
+    else if n == 1 then List(1)
+    else if n == 2 then List(1, 1)
+    else
+      val fib = fibo(n - 1)
+      (fib.head + fib.tail.head) :: fib
+  fibo(n).reverse
+
 
 // 11. Sum of a List
-def sumList(lst: List[Int]): Int = ???
+def sumList(lst: List[Int]): Int =
+  if lst.isEmpty
+  then 0
+  else lst.head + sumList(lst.tail)
+
+def sumList2(lst: List[Int]): Int =
+  lst match
+    case Nil => 0
+    case first :: rest => first + sumList2(rest)
 
 // 12. Count Even Numbers in a List
 def countEvens(lst: List[Int]): Int = ???
